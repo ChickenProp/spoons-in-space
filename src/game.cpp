@@ -82,7 +82,12 @@ void Game::addParticles(ph::vec2f pos, ph::vec2f vel, int count,
 	float thetamin = vel.angle() - spray/2;
 
 	for (int i = 0; i < count; i++) {
-		float d = ph::randf(2*r);
+		float x, y;
+		do {
+			x = ph::randf(1);
+			y = ph::randf(1);
+		} while (sqrt(x*x + y*y > 1));
+		float d = r*sqrt(x*x + y*y);
 		float t = ph::randf(spray) + thetamin;
 
 		curParts->push_back(Particle(pos, ph::vec2f::polar(d, t),
