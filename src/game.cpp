@@ -12,6 +12,7 @@ Game::Game()
 	  bullets(),
 	  enemies(new EnemyMgr()),
 	  backdrop(),
+	  spoonSprite(),
 	  clock(),
 	  isGameOver(false),
 	  gameOverClock(),
@@ -21,6 +22,7 @@ Game::Game()
 	  curParts(&parts1)
 {
 	backdrop.SetImage(G::Images::backdrop);
+	spoonSprite.SetImage(G::Images::spoon);
 }
 
 void Game::update() {
@@ -97,6 +99,7 @@ void Game::addParticles(ph::vec2f pos, ph::vec2f vel, int count,
 
 void Game::render() {
 	G::window.Draw(backdrop);
+	drawSpoons();
 
 	if (player)
 		player->render();
@@ -123,6 +126,47 @@ void Game::render() {
 			                       sf::Color(0, 0, 0, alpha));
 		G::window.Draw(overlay);
 	}
+}
+
+void Game::drawSpoons () {
+	spoonSprite.SetRotation(0);
+	ph::vec2f pos(20, -110);
+	spoonSprite.SetPosition(pos);
+	G::window.Draw(spoonSprite);
+
+	pos.x = G::window.GetWidth() - 256 - 20;
+	spoonSprite.SetPosition(pos);
+	G::window.Draw(spoonSprite);
+
+	pos.x = G::window.GetWidth() + 108;
+	pos.y = 20;
+	spoonSprite.SetPosition(pos);
+	spoonSprite.SetRotation(-90);
+	G::window.Draw(spoonSprite);
+
+	pos.y = G::window.GetHeight() - 256 - 20;
+	spoonSprite.SetPosition(pos);
+	G::window.Draw(spoonSprite);
+
+	pos.x = G::window.GetWidth() - 20;
+	pos.y = G::window.GetHeight() + 128 - 20;
+	spoonSprite.SetPosition(pos);
+	spoonSprite.SetRotation(180);
+	G::window.Draw(spoonSprite);
+
+	pos.x = 256 + 20;
+	spoonSprite.SetPosition(pos);
+	G::window.Draw(spoonSprite);
+
+	pos.x = - 128 + 20;
+	pos.y = G::window.GetHeight() - 20;
+	spoonSprite.SetPosition(pos);
+	spoonSprite.SetRotation(90);
+	G::window.Draw(spoonSprite);
+
+	pos.y = 256 + 20;
+	spoonSprite.SetPosition(pos);
+	G::window.Draw(spoonSprite);
 }
 
 void Game::renderParts () {

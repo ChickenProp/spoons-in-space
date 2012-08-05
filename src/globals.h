@@ -29,6 +29,7 @@ public:
 		static sf::Image enemy_circle;
 		static sf::Image enemy_triangle;
 		static sf::Image enemy_square;
+		static sf::Image spoon;
 	};
 
 	static bool loadImages();

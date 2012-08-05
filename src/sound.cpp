@@ -32,11 +32,11 @@ void Sound::play(sf::SoundBuffer *buf, bool loop, float pitch, float vol) {
 	}
 
 void Sound::loadSounds () {
-	LOADSOUND(shoot, "shoot");
-	LOADSOUND(bounce, "bounce");
+	LOADSOUND(shoot, "zap");
+	LOADSOUND(bounce, "boing");
 	LOADSOUND(newWave, "new-wave");
 	LOADSOUND(pickupEnemy, "pickup-enemy");
 	LOADSOUND(enemyHit, "enemy-hit");
 	LOADSOUND(enemyKill, "enemy-kill");
-	LOADSOUND(playerDeath, "player-death");	
+	LOADSOUND(playerDeath, "player-death");
 }

@@ -20,6 +20,8 @@ public:
 	void handleEvent(sf::Event e);
 
 	sf::Sprite backdrop;
+	sf::Sprite spoonSprite;
+	void drawSpoons();
 
 	Player *player;
 
