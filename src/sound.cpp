@@ -33,7 +33,7 @@ void Sound::play(sf::SoundBuffer *buf, bool loop, float pitch, float vol) {
 
 void Sound::loadSounds () {
 	LOADSOUND(shoot, "zap");
-	LOADSOUND(bounce, "boing");
+	LOADSOUND(bounce, "bounce");
 	LOADSOUND(newWave, "new-wave");
 	LOADSOUND(pickupEnemy, "pickup-enemy");
 	LOADSOUND(enemyHit, "enemy-hit");

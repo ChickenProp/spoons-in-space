@@ -16,6 +16,7 @@ sf::Image G::Images::glow;
 sf::Image G::Images::enemy_circle;
 sf::Image G::Images::enemy_triangle;
 sf::Image G::Images::enemy_square;
+sf::Image G::Images::enemy_cheese;
 sf::Image G::Images::spoon;
 
 Player *G::player () {
@@ -40,6 +41,7 @@ bool G::loadImages () {
 	succ = succ && G::Images::enemy_circle.LoadFromFile("media/pea.png");
 	succ = succ && G::Images::enemy_triangle.LoadFromFile("media/enemy-triangle.tga");
 	succ = succ && G::Images::enemy_square.LoadFromFile("media/enemy-square.tga");
+	succ = succ && G::Images::enemy_cheese.LoadFromFile("media/cheese.png");
 	succ = succ && G::Images::spoon.LoadFromFile("media/spoon.png");
 
 	return succ;

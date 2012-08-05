@@ -12,7 +12,7 @@ Enemy::Enemy ()
 {}
 
 void Enemy::die() {
-	dead = true;
+	markTrash();
 	deadClock.Reset();
 
 	if (G::player())

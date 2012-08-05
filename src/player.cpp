@@ -80,11 +80,10 @@ bool Player::canShoot() {
 }
 
 void Player::shoot() {
-	Bullet *bullet = new Bullet(pos + ph::vec2f::polar(radius, angle),
-	                            vel + ph::vec2f::polar(10, angle));
+	Bullet *bullet = new Bullet(pos + ph::vec2f::polar(radius+20, angle),
+	                            ph::vec2f::polar(4, angle));
 	G::gameScreen->addBullet(bullet);
 
-	ammo = ph::max(ammo-1, 0);
 	shotClock.Reset();
 
 	float pitch = (ammo * 10 < maxAmmo ? 2.0

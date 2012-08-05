@@ -3,6 +3,7 @@
 #include "e-circle.h"
 #include "e-triangle.h"
 #include "e-square.h"
+#include "e-cheese.h"
 #include "sound.h"
 
 EnemyMgr::EnemyMgr()
@@ -73,23 +74,19 @@ void EnemyMgr::render () {
 }
 
 void EnemyMgr::newWave () {
-	for (int i = 0; i < waveDifficulty; i++) {
-		ph::vec2f pos = randomCornerPosition();
+	ph::vec2f pos = randomCornerPosition();
 
-		Enemy *en = NULL;
-		int type = ph::randi(ph::max(waveDifficulty/10, 1)) + 1;
-		switch (type) {
-		case 1: en = new E_Circle(pos); break;
-		case 2: en = new E_Triangle(pos); break;
-		case 3: default: en = new E_Square(pos); break;
-		}
-
-		upcoming.push_back(en);
-		i += type;
+	Enemy *en = NULL;
+	int type = ph::randi(2) + 1;
+	switch (type) {
+	case 1: en = new E_Circle(pos); break;
+	case 2: en = new E_Cheese(pos); break;
 	}
 
+	upcoming.push_back(en);
+
 	unvivifiedWave = true;
-	timeToWave = 20;
+	timeToWave = 5;
 	waveClock.Reset();
 	waveDifficulty += 5;
 }
