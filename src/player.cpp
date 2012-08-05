@@ -64,6 +64,14 @@ void Player::update() {
 		shoot();
 }
 
+void Player::render () {
+	if (trash) return;
+
+	sprite.SetPosition(pos);
+	sprite.SetRotation(-angle+40); // SFML angles are opposite to expected.
+	G::window.Draw(sprite);
+}
+
 bool Player::canShoot() {
 	if (ammo > 0)
 		return shotClock.GetElapsedTime() > 1.0/rateOfFire;
@@ -87,8 +95,7 @@ void Player::shoot() {
 }
 
 void Player::hitByBullet(Bullet *bullet) {
-	angle = (pos - bullet->pos).angle();
-	G::gameScreen->addParticles(pos, ph::vec2f::polar(2, angle), 500, 120);
+	G::gameScreen->addParticles(pos, bullet->vel / 10, 500, 120);
 	G::gameScreen->gameOver();
 }
 

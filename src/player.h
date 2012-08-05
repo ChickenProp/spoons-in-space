@@ -28,6 +28,7 @@ public:
 	void shoot();
 
 	void update();
+	void render();
 
 	void hitEnemy(Enemy *enemy);
 	virtual void hitByBullet(Bullet *bullet);

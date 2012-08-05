@@ -33,10 +33,10 @@ bool G::loadImages () {
 	bool succ = true;
 
 	succ = succ && G::Images::backdrop.LoadFromFile("media/backdrop.tga");
-	succ = succ && G::Images::player.LoadFromFile("media/player.tga");
+	succ = succ && G::Images::player.LoadFromFile("media/astronaut.png");
 	succ = succ && G::Images::bullet.LoadFromFile("media/bullet.tga");
 	succ = succ && G::Images::glow.LoadFromFile("media/glow.tga");
-	succ = succ && G::Images::enemy_circle.LoadFromFile("media/enemy-circle.tga");
+	succ = succ && G::Images::enemy_circle.LoadFromFile("media/pea.png");
 	succ = succ && G::Images::enemy_triangle.LoadFromFile("media/enemy-triangle.tga");
 	succ = succ && G::Images::enemy_square.LoadFromFile("media/enemy-square.tga");
 
