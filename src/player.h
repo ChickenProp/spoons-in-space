@@ -5,6 +5,7 @@
 #include "entity.h"
 
 class Enemy;
+class Bullet;
 
 class Player : public Entity {
 public:
@@ -29,6 +30,7 @@ public:
 	void update();
 
 	void hitEnemy(Enemy *enemy);
+	virtual void hitByBullet(Bullet *bullet);
 };
 
 #endif

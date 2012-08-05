@@ -17,4 +17,6 @@ void Bullet::update () {
 	pos += vel;
 
 	G::gameScreen->addParticles(pos, -vel/10, 1, 20, 5000);
+
+	bounceOffWalls(1);
 }

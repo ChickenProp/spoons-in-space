@@ -7,34 +7,9 @@
 #include "sound.h"
 
 Enemy::Enemy ()
-	: dead(0),
-	  deadClock(),
+	: deadClock(),
 	  health(1) // default
 {}
-
-void Enemy::checkBulletCollisions(const std::vector<Bullet*> &bullets) {
-	if (dead)
-		return;
-
-	for (int i = 0; i < bullets.size(); i++) {
-		if (! bullets[i] || ! colliding(bullets[i]))
-			continue;
-
-		float angle = bullets[i]->vel.angle();
-	        G::gameScreen->addParticles(pos, bullets[i]->vel / 10,//ph::vec2f::polar(1, angle),
-		                            50);
-		getHit();
-		bullets[i]->markTrash();
-	}
-}
-
-void Enemy::getHit () {
-	health--;
-	if (health <= 0)
-		die();
-	else
-	Sound::play(Sound::enemyHit);
-}
 
 void Enemy::die() {
 	dead = true;
@@ -46,7 +21,16 @@ void Enemy::die() {
 	G::enemyMgr()->enemyDied(this);
 	Sound::play(Sound::enemyKill);
 }
-	
+
+void Enemy::hitByBullet (Bullet *bullet) {
+	G::gameScreen->addParticles(pos, bullet->vel / 10, 50);
+	health--;
+	if (health <= 0)
+		die();
+	else
+	Sound::play(Sound::enemyHit);
+}
+
 void Enemy::update() {
 	super::update();
 

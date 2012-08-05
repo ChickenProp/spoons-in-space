@@ -17,13 +17,11 @@ public:
 
 	int score;
 
-	bool dead;
 	sf::Clock deadClock;
 	float corpseLife;
 	void die();
 
-	void checkBulletCollisions(const std::vector<Bullet*> &bullets);
-	void getHit();
+	virtual void hitByBullet(Bullet *bullet);
 
 	virtual void update();
 	virtual void render();

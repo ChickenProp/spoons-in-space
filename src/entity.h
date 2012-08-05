@@ -3,6 +3,8 @@
 
 #include "includes.h"
 
+class Bullet;
+
 class Entity {
 public:
 	Entity();
@@ -14,12 +16,18 @@ public:
 	ph::vec2f vel;
 	float angle;
 
+	bool dead;
 	bool trash;
 	void markTrash();
 	static bool deadPtr(Entity *ptr);
 
 	virtual void update();
 	virtual void render();
+
+	virtual bool bounceOffWalls(float restitution, float *bounceVel = NULL);
+
+	virtual void checkBulletCollisions(const std::vector<Bullet*> &bullets);
+	virtual void hitByBullet(Bullet *bullet);
 
 	ph::vec2f accel_drag(ph::vec2f dir, float maxSpeed, float timeToHalf);
 

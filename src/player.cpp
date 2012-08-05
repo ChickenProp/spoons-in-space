@@ -48,37 +48,8 @@ void Player::update() {
 	
 	pos += vel;
 
-	bool bounce = false;
 	float bounceVel = 0;
-	int width = G::window.GetWidth();
-	int height = G::window.GetHeight();
-	float rest = 0.8f;
-
-	if (pos.x - radius <= 0) {
-		vel = ph::vec2f(-vel.x*rest, vel.y);
-		bounceVel = fabs(vel.x);
-		pos.x = radius;
-		bounce = true;
-	}
-	else if (pos.x + radius >= width) {
-		vel = ph::vec2f(-vel.x*rest, vel.y);
-		bounceVel = fabs(vel.x);
-		pos.x = width - radius;
-		bounce = true;
-	}
-
-	if (pos.y - radius <= 0) {
-		vel = ph::vec2f(vel.x, -vel.y*rest);
-		bounceVel = fabs(vel.y);
-		pos.y = radius;
-		bounce = true;
-	}
-	else if (pos.y + radius >= height) {
-		vel = ph::vec2f(vel.x, -vel.y*rest);
-		bounceVel = fabs(vel.y);
-		pos.y = height - radius;
-		bounce = true;
-	}
+	bool bounce = bounceOffWalls(0.8f, &bounceVel);
 
 	if (bounce && bounceVel >= 0.5) {
 		Sound::play(Sound::bounce, false, 1.0f,
@@ -114,6 +85,13 @@ void Player::shoot() {
 
 	Sound::play(Sound::shoot, false, pitch);
 }
+
+void Player::hitByBullet(Bullet *bullet) {
+	angle = (pos - bullet->pos).angle();
+	G::gameScreen->addParticles(pos, ph::vec2f::polar(2, angle), 500, 120);
+	G::gameScreen->gameOver();
+}
+
 
 void Player::hitEnemy(Enemy *enemy) {
 	if (! enemy->dead) {

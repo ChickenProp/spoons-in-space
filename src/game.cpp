@@ -180,6 +180,9 @@ void Game::handleCollisions() {
 
 		(*it)->checkBulletCollisions(bullets);
 	}
+
+	if (player) // might be dead
+		player->checkBulletCollisions(bullets);
 }
 
 void Game::gameOver() {

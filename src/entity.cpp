@@ -1,8 +1,10 @@
 #include "entity.h"
 #include "globals.h"
+#include "bullet.h"
 
 Entity::Entity ()
-	: trash(false)
+	: trash(false),
+	  dead(false)
 {}
 
 void Entity::markTrash () {
@@ -26,6 +28,55 @@ void Entity::render () {
 	sprite.SetRotation(-angle); // SFML angles are opposite to expected.
 	G::window.Draw(sprite);
 }
+
+bool Entity::bounceOffWalls (float restitution, float *bounceVel) {
+	int width = G::window.GetWidth();
+	int height = G::window.GetHeight();
+
+	if (pos.x - radius <= 0) {
+		vel = ph::vec2f(-vel.x*restitution, vel.y);
+		if (bounceVel)
+			*bounceVel = fabs(vel.x);
+		pos.x = radius;
+		return true;
+	}
+	else if (pos.x + radius >= width) {
+		vel = ph::vec2f(-vel.x*restitution, vel.y);
+		if (bounceVel)
+			*bounceVel = fabs(vel.x);
+		pos.x = width - radius;
+		return true;
+	}
+
+	if (pos.y - radius <= 0) {
+		vel = ph::vec2f(vel.x, -vel.y*restitution);
+		if (bounceVel)
+			*bounceVel = fabs(vel.y);
+		pos.y = radius;
+		return true;
+	}
+	else if (pos.y + radius >= height) {
+		vel = ph::vec2f(vel.x, -vel.y*restitution);
+		if (bounceVel)
+			*bounceVel = fabs(vel.y);
+		pos.y = height - radius;
+		return true;
+	}
+}
+
+void Entity::checkBulletCollisions(const std::vector<Bullet*> &bullets) {
+	if (dead)
+		return;
+
+	for (int i = 0; i < bullets.size(); i++) {
+		if (! bullets[i] || ! colliding(bullets[i]))
+			continue;
+
+		hitByBullet(bullets[i]);
+	}
+}
+
+void Entity::hitByBullet (Bullet *bullet) {}
 
 // Calculate the new velocity when accelerating in direction dir, given that
 // drag prevents you from going faster than maxSpeed and causes you to take
