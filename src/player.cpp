@@ -26,6 +26,8 @@ Player::Player ()
 	// the circular bit to appear.
 	float scale = 128.0 / 96.0;
 	sprite.Resize(2 * radius * scale, 2 * radius * scale);
+
+	setId("Player");
 }
 
 void Player::update() {

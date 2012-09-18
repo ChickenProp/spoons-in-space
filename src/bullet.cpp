@@ -10,6 +10,8 @@ Bullet::Bullet (ph::vec2f _pos, ph::vec2f _vel) {
 	sprite.SetImage(G::Images::bullet);
 	sprite.SetCenter(16, 16); // the image is 32x32
 	sprite.Resize(10,10);
+
+	setId("Bullet");
 }
 
 void Bullet::update () {

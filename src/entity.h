@@ -11,6 +11,7 @@ public:
 
 	static int nextId;
 	std::string id;
+	void setId(std::string name);
 
 	sf::Sprite sprite;
 	float radius;

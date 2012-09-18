@@ -5,11 +5,14 @@
 int Entity::nextId = 0;
 
 Entity::Entity ()
-	: id("Entity"),
-	  trash(false),
+	: trash(false),
 	  dead(false)
 {
-	id += std::to_string(nextId++);
+	setId("Entity");
+}
+
+void Entity::setId(std::string name) {
+	id = name + " " + std::to_string(nextId++);
 }
 
 void Entity::markTrash () {
