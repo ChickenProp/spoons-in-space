@@ -94,6 +94,7 @@ void Player::shoot() {
 }
 
 void Player::hitByBullet(Bullet *bullet) {
+	super::hitByBullet(bullet);
 	G::gameScreen->addParticles(pos, bullet->vel / 10, 500, 120);
 	G::gameScreen->gameOver();
 }

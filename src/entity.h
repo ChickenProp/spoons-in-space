@@ -9,6 +9,9 @@ class Entity {
 public:
 	Entity();
 
+	static int nextId;
+	std::string id;
+
 	sf::Sprite sprite;
 	float radius;
 

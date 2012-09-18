@@ -23,6 +23,7 @@ void Enemy::die() {
 }
 
 void Enemy::hitByBullet (Bullet *bullet) {
+	super::hitByBullet(bullet);
 	G::gameScreen->addParticles(pos, bullet->vel / 10, 50);
 	health--;
 	if (health <= 0)

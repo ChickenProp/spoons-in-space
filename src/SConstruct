@@ -5,6 +5,8 @@ if int(debug):
     env.Append(CCFLAGS = '-g')
     env.Append(CPPDEFINES = 'DEBUG')
 
+env.Append(CPPFLAGS = '-std=c++0x')
+
 env.Program("#spoons-in-space", Glob('*.cpp'),
             LIBS=['GL', 'GLU', 'sfml-system', 'sfml-window', 'sfml-graphics',
                   'sfml-audio'])

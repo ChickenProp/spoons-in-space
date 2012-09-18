@@ -2,10 +2,15 @@
 #include "globals.h"
 #include "bullet.h"
 
+int Entity::nextId = 0;
+
 Entity::Entity ()
-	: trash(false),
+	: id("Entity"),
+	  trash(false),
 	  dead(false)
-{}
+{
+	id += std::to_string(nextId++);
+}
 
 void Entity::markTrash () {
 	trash = true;
@@ -76,7 +81,12 @@ void Entity::checkBulletCollisions(const std::vector<Bullet*> &bullets) {
 	}
 }
 
-void Entity::hitByBullet (Bullet *bullet) {}
+void Entity::hitByBullet (Bullet *bullet) {
+	#ifdef DEBUG
+	printf("Entity '%s' hit by bullet '%s'.\n",
+	       id.c_str(), bullet->id.c_str());
+	#endif
+}
 
 // Calculate the new velocity when accelerating in direction dir, given that
 // drag prevents you from going faster than maxSpeed and causes you to take
