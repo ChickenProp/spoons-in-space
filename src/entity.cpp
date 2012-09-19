@@ -5,7 +5,8 @@
 int Entity::nextId = 0;
 
 Entity::Entity ()
-	: trash(false),
+	: radius(0),
+	  trash(false),
 	  dead(false)
 {
 	setId("Entity");
